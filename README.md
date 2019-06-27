@@ -1,12 +1,13 @@
-Force Directed layout in 3D
+Force Directed layout in 4D
 ==========================
-[![Build Status](https://travis-ci.org/anvaka/ngraph.forcelayout3d.png?branch=master)](https://travis-ci.org/anvaka/ngraph.forcelayout3d)
+[![Build Status](https://travis-ci.org/vradrus/ngraph.forcelayout4d.png?branch=master)](https://travis-ci.org/vradrus/ngraph.forcelayout4d)
 
 This is a [force directed](http://en.wikipedia.org/wiki/Force-directed_graph_drawing)
-graph layouter in 3D space. It is using oct tree as an n-body solver. This
+graph layouter in 4D space. It is using oct tree as an n-body solver. This
 repository is part of [ngraph family](https://github.com/anvaka/ngraph), and
 operates on [`ngraph.graph`](https://github.com/anvaka/ngraph.graph) data structure.
 
+If three dimensions is enough please also checkout [ngraph.forcelayout3d](https://github.com/anvaka/ngraph.forcelayout3d)
 If two dimensions is enough please also checkout [ngraph.forcelayout](https://github.com/anvaka/ngraph.forcelayout)
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/anvaka/VivaGraphJS)
@@ -21,7 +22,7 @@ With that in mind, the easiest way to make graph look nice is:
 
 ``` js
 // graph is an instance of `ngraph.graph` object.
-var layout = require('ngraph.forcelayout3d')(graph);
+var layout = require('ngraph.forcelayout4d')(graph);
 for (var i = 0; i < ITERATIONS_COUNT; ++i) {
   layout.step();
 }
@@ -30,15 +31,15 @@ for (var i = 0; i < ITERATIONS_COUNT; ++i) {
 graph.forEachNode(function(node) {
   console.log(layout.getNodePosition(node.id));
   // Node position is pair of x,y,z coordinates:
-  // {x: ... , y: ... , z: ... }
+  // {x: ... , y: ... , z: ... , t: ... }
 });
 
 graph.forEachLink(function(link) {
   console.log(layout.getLinkPosition(link.id));
   // link position is a pair of two positions:
   // {
-  //   from: {x: ..., y: ..., z: ...},
-  //   to: {x: ..., y: ..., z: ...}
+  //   from: {x: ..., y: ..., z: ..., t: ...},
+  //   to: {x: ..., y: ..., z: ..., t: ...}
   // }
 });
 ```
@@ -78,7 +79,7 @@ you have initial positions, or user drags pinned node)? To do this, call `setNod
 method:
 
 ``` js
-layout.setNodePosition(nodeId, x, y, z);
+layout.setNodePosition(nodeId, x, y, z, t);
 ```
 
 ## Monitoring changes
@@ -89,7 +90,7 @@ It keeps layout up to date whenever graph changes:
 
 ``` js
 var graph = require('ngraph.graph')(); // empty graph
-var layout = require('ngraph.forcelayout3d')(graph); // layout of empty graph
+var layout = require('ngraph.forcelayout4d')(graph); // layout of empty graph
 
 graph.addLink(1, 2); // create node 1 and 2, and make link between them
 layout.getNodePosition(1); // returns position.
@@ -127,7 +128,7 @@ consider using verlet integration:
 var physicsSettings = {integrator: 'verlet'};
 
 // pass it as second argument to layout:
-var layout = require('ngraph.forcelayout3d')(graph, physicsSettings);
+var layout = require('ngraph.forcelayout4d')(graph, physicsSettings);
 ```
 
 Kudos to @annxingyuan for the [PR](https://github.com/anvaka/ngraph.forcelayout3d/pull/1).
@@ -140,8 +141,8 @@ quickly get bounding box use `getGraphRect()` method:
 
 ``` js
   var rect = layout.getGraphRect();
-  // rect.x1, rect.y1, rect.z1 - left top back coordinates of bounding box
-  // rect.x2, rect.y2, rect.z2 - right bottom front coordinates of bounding box
+  // rect.x1, rect.y1, rect.z1, rect.t1 - left top back past coordinates of bounding box
+  // rect.x2, rect.y2, rect.z2, rect.t2 - right bottom future front coordinates of bounding box
 ```
 
 # install
@@ -149,7 +150,7 @@ quickly get bounding box use `getGraphRect()` method:
 With [npm](https://npmjs.org) do:
 
 ```
-npm install ngraph.forcelayout3d
+npm install ngraph.forcelayout4d
 ```
 
 # license
@@ -160,3 +161,5 @@ MIT
 
 I'd totally love it! Please email me, open issue here, [tweet](https://twitter.com/anvaka)
 to me, or join discussion [on gitter](https://gitter.im/anvaka/VivaGraphJS).
+
+4D Fork by [tweet](https://twitter.com/vradrus)
