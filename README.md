@@ -113,7 +113,7 @@ second argument to layout constructor.
 var physicsSettings = {gravity: -1.2}; // construct physics simulator settings
 
 // pass it as second argument to layout:
-var layout = require('ngraph.forcelayout3d')(graph, physicsSettings);
+var layout = require('ngraph.forcelayout4d')(graph, physicsSettings);
 ```
 
 You can always get current physics simulator from layout by checking `layout.simulator`
