@@ -1,7 +1,7 @@
 {
-  "name": "ngraph.forcelayout3d",
+  "name": "ngraph.forcelayout4d",
   "version": "1.0.0",
-  "description": "Force directed graph layout in 3d",
+  "description": "Force directed graph layout in 4d",
   "main": "index.js",
   "scripts": {
     "test": "tap test/*.js",
@@ -14,11 +14,11 @@
     "force-directed",
     "layout"
   ],
-  "author": "Andrei Kashcha",
+  "author": "Andrei Kashcha, fork by Vladimir Radushevskii",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/anvaka/ngraph.forcelayout3d"
+    "url": "https://github.com/vradrus/ngraph.forcelayout4d"
   },
   "devDependencies": {
     "benchmark": "~1.0.0",
@@ -27,11 +27,11 @@
     "tap": "^14.2.2"
   },
   "dependencies": {
-    "ngraph.quadtreebh3d": "^1.0.0",
+    "ngraph.quadtreebh4d": "^1.0.0",
     "ngraph.random": "^1.0.0",
     "ngraph.merge": "^1.0.0",
     "ngraph.expose": "^1.0.0",
-    "ngraph.physics.primitives": "^1.0.0",
+    "ngraph.physics.primitives4d": "^1.0.0",
     "ngraph.forcelayout": "^1.0.0"
   }
 }
