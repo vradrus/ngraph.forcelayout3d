@@ -56,7 +56,8 @@ test('layout initializes nodes positions', function (t) {
     var pos = layout.getNodePosition(node.id);
     t.ok(pos && typeof pos.x === 'number' &&
           typeof pos.y === 'number' &&
-          typeof pos.z === 'number', 'Position is defined');
+          typeof pos.z === 'number' &&
+          typeof pos.t === 'number', 'Position is defined');
   });
 
   graph.forEachLink(function (link) {
@@ -86,7 +87,8 @@ test('layout can use verlet integrator', function (t) {
     var pos = layout.getNodePosition(node.id);
     t.ok(pos && typeof pos.x === 'number' &&
           typeof pos.y === 'number' &&
-          typeof pos.z === 'number', 'Position is defined');
+          typeof pos.z === 'number' &&
+          typeof pos.t === 'number', 'Position is defined');
   });
 
   graph.forEachLink(function (link) {
@@ -107,7 +109,7 @@ test('Layout can set node position', function (t) {
   var layout = createLayout(graph);
 
   layout.pinNode(graph.getNode(1), true);
-  layout.setNodePosition(1, 42, 43, 44);
+  layout.setNodePosition(1, 42, 43, 44, 45);
 
   // perform one iteration of layout:
   layout.step();
@@ -117,6 +119,7 @@ test('Layout can set node position', function (t) {
   t.equals(actualPosition.x, 42, 'X has not changed');
   t.equals(actualPosition.y, 43, 'Y has not changed');
   t.equals(actualPosition.z, 44, 'Z has not changed');
+  t.equals(actualPosition.t, 45, 'T has not changed');
 
   t.end();
 });
