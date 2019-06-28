@@ -9,17 +9,17 @@ test('update bounding box', function (t) {
 
   // empty bodies, but box should exist:
   var box = b.box;
-  ['x1', 'y1', 'z1', 'x2', 'y2', 'z2'].forEach(function (key) {
+  ['x1', 'y1', 'z1', 't1', 'x2', 'y2', 'z2', 't2'].forEach(function (key) {
     t.ok(typeof box[key] === 'number', 'Has ' + key + ' property');
   });
 
-  bodies.push(createBody({x: 0, y: 0, z: 0}));
-  bodies.push(createBody({x: 1, y: 1, z: 1}));
+  bodies.push(createBody({x: 0, y: 0, z: 0, t: 0}));
+  bodies.push(createBody({x: 1, y: 1, z: 1, t: 1}));
 
   b.update();
   // now two bodies, and box should be 0, 0, 0 > 1, 1, 1
-  t.equals(box.x1, 0); t.equals(box.y1, 0); t.equals(box.z1, 0);
-  t.equals(box.x2, 1); t.equals(box.y2, 1); t.equals(box.z2, 1);
+  t.equals(box.x1, 0); t.equals(box.y1, 0); t.equals(box.z1, 0); t.equals(box.t1, 0);
+  t.equals(box.x2, 1); t.equals(box.y2, 1); t.equals(box.z2, 1); t.equals(box.t2, 1);
 
   t.end();
 });
